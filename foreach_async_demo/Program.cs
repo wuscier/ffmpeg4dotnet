@@ -22,7 +22,10 @@ namespace foreach_async_demo
 
                 Console.WriteLine(s);
 
-                await p.RequestAsync(); 
+                await p.RequestAsync();
+
+                // Console.WriteLine(s);
+                // code after await won't execute until the task awaited completes
             });
 
             Console.WriteLine("done.");
