@@ -25,7 +25,12 @@ namespace foreach_async_demo
 
                 Console.WriteLine(s);
 
+                Console.WriteLine($"ForEach before RequestAsync() thread id is:{Thread.CurrentThread.ManagedThreadId}");
+
                 await p.RequestAsync();
+
+                Console.WriteLine($"ForEach after RequestAsync() thread id is:{Thread.CurrentThread.ManagedThreadId}");
+
 
                 // Console.WriteLine(s);
                 // code after await won't execute until the task awaited completes
