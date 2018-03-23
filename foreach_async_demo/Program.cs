@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace foreach_async_demo
@@ -9,6 +10,8 @@ namespace foreach_async_demo
     {
         static void Main(string[] args)
         {
+            Console.WriteLine($"main thread id: {Thread.CurrentThread.ManagedThreadId}");
+
             Program p = new Program();
 
             List<string> sList = new List<string>();
@@ -36,7 +39,11 @@ namespace foreach_async_demo
         {
             HttpClient httpClient = new HttpClient();
 
+            Console.WriteLine($"RequestAsync() before GetStringAsync() thread id is:{Thread.CurrentThread.ManagedThreadId}");
+
             string result = await httpClient.GetStringAsync("http://www.baidu.com");
+
+            Console.WriteLine($"RequestAsync() after GetStringAsync() thread id is:{Thread.CurrentThread.ManagedThreadId}");
 
             Console.WriteLine(result);
         }
